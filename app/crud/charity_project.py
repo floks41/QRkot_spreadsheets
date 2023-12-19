@@ -42,8 +42,8 @@ class CRUDCharityProject(
                 [
                     CharityProject.name,
                     (
-                        extract(word.EPOCH, CharityProject.close_date)
-                        - extract(word.EPOCH, CharityProject.create_date)
+                        extract(word.EPOCH, CharityProject.close_date) -
+                        extract(word.EPOCH, CharityProject.create_date)
                     ).label(settings.FUNDRAISING_TIME_FIELD_NAME),
                     CharityProject.description,
                 ]
