@@ -16,5 +16,3 @@ AUTH_PROVIDER_X509_CERT_URL=https://www.googleapis.com/oauth2/v1/certs
 CLIENT_X509_CERT_URL=https://www.googleapis.com/robot/v1/metadata/x509/some_google_user4%40green-apple-537.iam.gserviceaccount.com
 UNIVERSE_DOMAIN=googleapis.com
 EMAIL=some_google_user@gmail.com
-SPREADSHEETS_SCOPE=https://www.googleapis.com/auth/spreadsheets
-DRIVE_SCOPE=https://www.googleapis.com/auth/drive

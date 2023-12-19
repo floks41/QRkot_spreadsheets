@@ -34,6 +34,10 @@ class Settings(BaseSettings):
     drive_scope: Optional[str] = None
     # Константы
     FUNDRAISING_TIME_FIELD_NAME: str = 'fundraising_time'
+    __SCOPES = [
+        'https://www.googleapis.com/auth/drive',
+        'https://www.googleapis.com/auth/spreadsheets',
+    ]
 
     class Config:
         """Класс конфигурации настроек проекта,
@@ -43,7 +47,7 @@ class Settings(BaseSettings):
     @property
     def google_api_scopes(self):
         """Возвращает список областей применения для google api."""
-        return [self.spreadsheets_scope, self.drive_scope]
+        return self.__SCOPES
 
     @property
     def google_api_service_account_info(self):
