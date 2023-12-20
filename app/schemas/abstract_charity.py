@@ -29,5 +29,6 @@ class AbstractDB(AbstractCreate):
     close_date: Optional[datetime]
 
     class Config:
-        """Конфигурация абстрактной схемы чтения объектов из базы данных."""
+        """Конфигурация абстрактной схемы чтения объектов
+        из базы данных."""
         orm_mode = True

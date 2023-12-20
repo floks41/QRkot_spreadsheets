@@ -16,10 +16,14 @@ async def check_charity_project_exists(
 ) -> CharityProject:
     """Проверяет существование объекта CharityProject по id.
     Возвращает объект CharityProject, либо вызывает исключение."""
-    charity_project = await charity_project_crud.get(session, project_id)
+    charity_project = await charity_project_crud.get(
+        session=session,
+        obj_id=project_id,
+    )
     if charity_project is None:
         raise HTTPException(
-            status_code=HTTPStatus.NOT_FOUND, detail='Проект не найдена!'
+            status_code=HTTPStatus.NOT_FOUND,
+            detail='Проект не найдена!',
         )
     return charity_project
 
@@ -31,7 +35,8 @@ async def check_name_duplicate(
     """Проверяет существование объекта CharityProject с указанным именем.
     При существовании объекта вызывает исключение."""
     project = await charity_project_crud.get_project_by_name(
-        session, project_name
+        session=session,
+        project_name=project_name,
     )
     if project is not None:
         raise HTTPException(
@@ -54,7 +59,9 @@ async def check_new_full_amount(
         )
 
 
-async def check_charity_project_is_closed(project: CharityProject) -> None:
+async def check_charity_project_is_closed(
+    project: CharityProject,
+) -> None:
     """Проверяет перед редактированием, что проект не закрыт.
     В противном случае вызывает исключение."""
     if project.fully_invested:
@@ -64,7 +71,9 @@ async def check_charity_project_is_closed(project: CharityProject) -> None:
         )
 
 
-async def check_charity_project_before_remove(project: CharityProject) -> None:
+async def check_charity_project_before_remove(
+    project: CharityProject,
+) -> None:
     """Проверяет перед удалением, что в проект
     не внесены пожертвования или он не закрыт.
     В противном случае вызывает исключение."""

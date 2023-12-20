@@ -21,7 +21,7 @@ router = APIRouter()
 
 @router.get(
     '/',
-    dependencies=[Depends(current_superuser)],
+    dependencies=(Depends(current_superuser),),
 )
 async def get_report(
     session: AsyncSession = Depends(get_async_session),
@@ -34,5 +34,12 @@ async def get_report(
     )
     sheets_settings.set_table_row_count(len(projects))
     spreadsheet_id = await spreadsheets_create(wrapper_services)
-    await set_user_permissions(spreadsheet_id, wrapper_services)
-    await spreadsheets_update_value(spreadsheet_id, projects, wrapper_services)
+    await set_user_permissions(
+        spreadsheet_id=spreadsheet_id,
+        wrapper_services=wrapper_services,
+    )
+    await spreadsheets_update_value(
+        spreadsheet_id=spreadsheet_id,
+        projects=projects,
+        wrapper_services=wrapper_services,
+    )

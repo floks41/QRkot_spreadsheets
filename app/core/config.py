@@ -42,6 +42,7 @@ class Settings(BaseSettings):
     class Config:
         """Класс конфигурации настроек проекта,
         задается имя файла env."""
+
         env_file = '.env'
 
     @property
@@ -70,7 +71,11 @@ class Settings(BaseSettings):
     def permissions_body(self):
         """Возвращает словарь разрешений доступа
         для назначения таблице."""
-        return {'type': 'user', 'role': 'writer', 'emailAddress': self.email}
+        return {
+            'type': 'user',
+            'role': 'writer',
+            'emailAddress': self.email,
+        }
 
 
 settings = Settings()
